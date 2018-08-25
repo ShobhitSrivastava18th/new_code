@@ -1,0 +1,249 @@
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+struct node
+{
+    int data;
+    int link;
+};
+struct node *START=NULL;
+//////////////////////////////////////////////
+struct node* create_node()
+{
+    struct node *a ;
+    a=(struct node *)malloc(sizeof(struct node));
+    a->link=NULL;
+}
+
+//////////////////////////////////////////////
+void insert_node(int var)
+{
+    struct node *t,*temp;
+    temp=create_node();
+    temp->data=var;
+    temp->link=START;
+    if(START=NULL)
+    {
+        START=temp;
+    }
+    else
+    {
+        t=START;
+        while(t->link!=NULL)
+            {
+                t=t->link;
+            }
+        t->link=temp;
+    }
+}
+/////////////////////////////////////////////////
+void list_view()
+{
+    struct node *t;
+    if(START=NULL)
+    {
+        printf("LINKED LIST IS  EMPTY");
+    }
+    else
+    {
+        t=START;
+    while(t->link!=NULL)
+    {
+        printf("The item is %d",t->data);
+        t=t->link;
+    }
+    }
+}
+/////////////////////////////////////////////////
+void insert_bef(int bef)
+{
+    struct node *t,*m,*cn;
+    t=START;
+    while(t->data!=bef)
+    {
+        m=t;
+        t=t->link;
+    }
+    cn=create_node();
+    cn->link=t;
+    m->link=cn;
+}
+/////////////////////////////////////////////////
+void insert_after(int bef)
+{
+    struct node *t,*cn;
+    t=START;
+    while(t->data!=bef)
+    {
+        t=t->link;
+    }
+    cn=create_node();
+    cn->link=t->link;
+    t->link=cn;
+}
+///////////////////////////////////////////////
+void del(int a)
+{
+    if(START==NULL)
+    {
+        printf("LINKED LIST DOESN'T EXIST");
+    }
+    else{
+    struct node *t,*m;
+    t=START;
+    while(t->data!=a)
+    {
+        m=t;
+        t=t->link;
+    }
+    m->link=t->link;
+    free(t);
+}}
+////////////////////////////////////////////////
+void del_bef(int a)
+{
+    if(START==NULL)
+    {
+        printf("LINKED LIST DOESN'T EXIST");
+    }
+    else
+    {
+    struct node *t,*m;
+    t=START;
+    while(t->data!=a)
+    {
+        m=t;
+        t=t->link;
+    }
+    m->link=t->link;
+    free(t);
+}}
+///////////////////////////////////////////////////
+void del_after(int a)
+{
+    if(START==NULL)
+    {
+        printf("LINKED LIST DOESN'T EXIST");
+    }
+    else{
+    struct node *t,*k;
+    t=START;
+    while(t->data!=a)
+    {
+        t=t->link;
+        k->link=t->link;
+    }
+    t->link=k->link;
+    free(k);
+}}
+//////////////////////////////////////////
+void del_beg()
+{
+    if(START==NULL)
+    {
+        printf("LINKED LIST DOESN'T EXIST");
+    }
+    else{
+    struct node *t;
+    t=START;
+    START=START->link;
+    free(t);
+}}
+//////////////////////////////////////////
+    void del_end()
+{
+    if(START==NULL)
+    {
+        printf("LINKED LIST DOESN'T EXIST");
+    }
+    else{
+    struct node *t,*m;
+    t=START;
+    while(t->link!=NULL)
+    {
+        m=t;
+        t=t->link;
+    }
+    m->link=NULL;
+    free(t);
+
+}}
+//////////////////////////////////////////
+S1:
+    int choice()
+{
+
+    int ch;
+     printf("Enter 1 to Create Node");
+     printf("\n Enter 2 to insert Node");
+     printf("\n Enter 3 to insert node after the beginning of which node and Enter the value");
+     printf("\n Enter 4 to insert node before the beginning of the node and Enter the value");
+     printf("\n Enter 5 to Delete the beginning node");
+     printf("\n Enter 6 to Delete the node in the End");
+     printf("\n Enter 7 to Delete the node after the given value and don't forget to enter the value after which the item is to be deleted");
+     printf("\n Enter 8 to Delete the node before the given value and pass the value");
+     printf("\n Enter 9 to view the list");
+     printf("\n Enter 10 to exit");
+     printf("\n Enter your choice \n");
+    scanf("%d",&ch);
+     return(ch);
+}
+int main()
+{
+    int z,x,v,h,d,n;
+    switch(choice())
+    {
+    case 1:
+        create_node();
+        printf("hii");
+        break;
+    case 2:
+        printf("Enter the value to be added");
+        scanf("%d",&n);
+        insert_node(n);
+        break;
+    case 3:
+         printf("enter the value to be added");
+        scanf("%d",&x);
+        insert_bef(x);
+        break;
+    case 4:
+         printf("enter the value to be added");
+        scanf("%d",&v);
+        insert_after(v);
+        break;
+
+    case 5:
+        del_beg();
+        break;
+
+    case 6:
+        del_end();
+
+        break;
+
+    case 7:
+         printf("enter the value to be added");
+        scanf("%d",&h);
+        del_after(h);
+        break;
+
+    case 8:
+         printf("enter the value to be added");
+        scanf("%d",&d);
+        del_bef(d);
+        break;
+    case 9:
+        list_view();
+        break;
+    case 10:
+        exit(1);
+        break;
+    default:
+        printf("WRONG CHOICE");
+        break;
+    }
+    goto S1;
+    return(0);
+
+}
